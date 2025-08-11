@@ -3,7 +3,7 @@ clear; close all;
 fs = 1000;                      % Sampling rate
 gamma_range = [30 45];          % Gamma band (Hz)
 window_duration = 104;          % T-test window duration in seconds
-n_subjects = 10;                % Number of subjects
+n_subjects = 1;                 % Number of subjects
 n_channels = 32;
 
 load('C:\Users\B00896414\OneDrive - Ulster University\Phd Related Papers and Data\N-back\Optimal_Time_delay.mat')
@@ -62,7 +62,6 @@ for subj = 1:n_subjects
 
     % Define data segments
     eeg_nonfatigue = EEG_Nback(:, 1:first_sig_change_sample);
-    eeg_intermediate = EEG_Nback(:, inter_start:inter_end);
     eeg_fatigue = EEG_Nback(:, inter_end+1:end);
 
     % Initialize coherence matrices
@@ -80,13 +79,6 @@ for subj = 1:n_subjects
             coh_nonfatigue(i,j) = val_nf;
             coh_nonfatigue(j,i) = val_nf;
 
-            % Intermediate
-            [cxy_im, f_im] = mscohere(eeg_intermediate(i,:), eeg_intermediate(j,:), [], [], [], fs);
-            gamma_idx_im = f_im >= gamma_range(1) & f_im <= gamma_range(2);
-            val_im = mean(cxy_im(gamma_idx_im));
-            coh_intermediate(i,j) = val_im;
-            coh_intermediate(j,i) = val_im;
-
             % Fatigue
             [cxy_f, f_f] = mscohere(eeg_fatigue(i,:), eeg_fatigue(j,:), [], [], [], fs);
             gamma_idx_f = f_f >= gamma_range(1) & f_f <= gamma_range(2);
@@ -98,5 +90,6 @@ for subj = 1:n_subjects
 
     % Save results
     save(sprintf('Adjacency_CoherenceAvgGamma_Subject_%02d.mat', subj), ...
-        'coh_nonfatigue', 'coh_fatigue', 'coh_intermediate');
+        'coh_nonfatigue', 'coh_fatigue');
 end
+
