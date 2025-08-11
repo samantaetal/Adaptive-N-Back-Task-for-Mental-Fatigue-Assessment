@@ -1,4 +1,4 @@
-function [FatigueScore,MotivationScore,reaction_time,time_stamp,horz_eyeMovement,vert_eyeMovement,pupil_size] =  pvt_2(run_time,mainwin,w,h)
+function [FatigueScore,MotivationScore,reaction_time,time_stamp,horz_eyeMovement,vert_eyeMovement,pupil_size] =  pvt(run_time,mainwin,w,h)
 
 
 % Inputs ---> run_time -> Time until the PVT will execute in minute (varType = double)
@@ -276,4 +276,5 @@ pause(0.2);
 Screen('TextSize',mainwin,70);
 DrawFormattedText(mainwin, 'End of PVT', 'center', 'center', 0, 40);
 Screen('Flip',mainwin);
+
 WaitSecs(2);
