@@ -110,7 +110,7 @@ io64(ioObj,address,0);
 
 [preTestFatigueScore,preTestMotivationLevel,preTask_reaction_time,...
     preTask_time_stamp,preTask_horz_eyeMovement,preTask_vert_eyeMovement,...
-    preTask_pupil_size] = pvt_2(pvt_runtime,win,w,h);
+    preTask_pupil_size] = pvt(pvt_runtime,win,w,h);
 
 udpSend(EndPVT);
 WaitSecs(0.5)
@@ -126,7 +126,7 @@ io64(ioObj,address,NbackStart);
 io64(ioObj,address,0);
 [Reaction_time,N,Stim_sequence,Ground_truth,Acc,IntraTaskFatigueScore,...
     IntraTaskMotivationScore,IntraTask_horz_eyeMovement,...
-    IntraTask_vert_eyeMovement,IntraTask_pupil_size] = nBack2(nBack_runtime,win,w);
+    IntraTask_vert_eyeMovement,IntraTask_pupil_size] = nBack(nBack_runtime,win,w);
 
 udpSend(NbackEnd);
 WaitSecs(0.5)
@@ -143,7 +143,7 @@ io64(ioObj,address,0);
 
 [postTask_FatigueScore,postTask_MotivationLevel,postTask_reaction_time,...
     postTask_time_stamp,postTask_horz_eyeMovement,postTask_vert_eyeMovement,...
-    postTask_pupil_size] = pvt_2(pvt_runtime,win,w,h);
+    postTask_pupil_size] = pvt(pvt_runtime,win,w,h);
 
 udpSend(EndPVT);
 WaitSecs(0.5)
@@ -173,3 +173,4 @@ Screen('CloseAll');
 %% Saving Data
 clear ans;
 save([outputFileName,'_Sub_',sub_id,'_session_',session,'.mat']);
+
