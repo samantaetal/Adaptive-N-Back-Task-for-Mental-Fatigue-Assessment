@@ -1,4 +1,4 @@
-function [reaction_time,N,sequence,ground_truth,Acc,FatigueScore,MotivationScore,horz_eyeMovement,vert_eyeMovement,pupil_size] = nBack2(run_time,mainwin,w)
+function [reaction_time,N,sequence,ground_truth,Acc,FatigueScore,MotivationScore,horz_eyeMovement,vert_eyeMovement,pupil_size] = nBack(run_time,mainwin,w)
 
 addpath(genpath('./'))
 
@@ -26,11 +26,11 @@ Screen(mainwin,'Flip');
 im = imread('FixCross.jpg');
 im_cross = Screen('MakeTexture',mainwin,im);
 clear im;
-im = imread('MentalFatigue_m.jpg');
+im = imread('MentalFatigue.jpg');
 im = imresize(im,0.4);
 imfatigue = Screen('MakeTexture',mainwin,im);
 clear im;
-im = imread('Motivation_m.jpg');
+im = imread('Motivation.jpg');
 im = imresize(im,0.4);
 imMotivation = Screen('MakeTexture',mainwin,im);
 clear im;
@@ -348,3 +348,4 @@ Screen('TextSize',mainwin,70);
 DrawFormattedText(mainwin, 'End of N-Back task', 'center', 'center', 0, 40);
 Screen('Flip',mainwin);
 WaitSecs(2);
+
