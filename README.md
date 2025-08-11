@@ -8,3 +8,4 @@ Instructions of using the code:
  To run the experiment, user needs to install Psychtoolbox (http://psychtoolbox.org/) and all of its dependencies as described in the official website.
 
  
+The script, 'MentalFatigue_Complete_Paradigm_withMouse.m' 
